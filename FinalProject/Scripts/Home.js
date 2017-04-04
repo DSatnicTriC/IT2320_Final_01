@@ -3,24 +3,26 @@ var accountInfoHtml = '<div> Made it to account info ... now I just need to add 
 
 $(document).ready(function () {
     $(".content").html(loginHtml);
-});
 
-$("#newUserCreateAccountButton").click(function () {
-    var dataObject = {
-        Username: $("#newUserUserName").val(),
-        Password: $("#newUserPassword").val(),
-        EmailAdd: $("#newUserEmail").val(),
-        EmailCon: $("#newUserEmailRepeat").val(),
-    };
+    $("#newUserCreateAccountButton").click(function () {
+        var dataObject = {
+            Username: $("#newUserUserName").val(),
+            Password: $("#newUserPassword").val(),
+            EmailAdd: $("#newUserEmail").val(),
+            EmailCon: $("#newUserEmailRepeat").val(),
+        };
 
-    $.ajax({
-        url: window.FinalProjectUrl_CreateAccount,
-        data: dataObject,
-        success: successAccountCreate,
-        dataType: "json"
+        $.ajax({
+            url: window.FinalProjectUrl_CreateAccount,
+            data: dataObject,
+            success: successAccountCreate,
+            dataType: "json"
+        });
     });
 });
 
-function successAccountCreate() {
+
+
+function successAccountCreate(responseData) {
     $(".content").html(accountInfoHtml);
 }
