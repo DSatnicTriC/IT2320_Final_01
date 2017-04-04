@@ -12,12 +12,28 @@
         <script src="~/Scripts/jquery-ui.min.js"></script>
         <script src="~/Scripts/Home.js"></script>
         
-        <div class="home">
+        <header>
+            <h1>
+                Welcome to Cuyahoga Community College Student Services Online
+            </h1>
+            <p>
+                Cuyahoga Community College recognizes student' right to access personal and academic records
+                in accordance with the Family Educational Rights and Privacy Act of 1974 (FERPA) as 
+                amended by Public Law 930568 
+            </p>
+        </header>
 
-            <div>Hello World</div>
+        <div class="content">            
 
         </div>
 
-    </body>
+        <footer>
+            Cuyahoga Community College<br />
+            700 Carnegie Avenue, Cleveland, Ohio 44115
+        </footer>
 
+        <script>
+            window.FinalProjectUrl_CreateAccount = '@Url.Action("CreateaAccount", "Home")';
+        </script>
+    </body>
 </html>
