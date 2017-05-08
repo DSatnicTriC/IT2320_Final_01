@@ -5,10 +5,14 @@
     margin: 15px auto;
 }
 
-#fullPage {
-    padding: 10px 15px;
+.content {
+    padding: 15px 15px 0 15px;
     border: 1px black solid;
     border-radius: 5px;
+}
+
+.content {
+    margin-bottom: 15px;
 }
 
 p {
@@ -30,7 +34,62 @@ p {
     text-align: left;
 }
 
+#existingUsersInfo {
+    float: left;
+    width: 185px;
+}
 
-.content {
-   margin-bottom: 15px;
+#existingUserLoginControls {
+    margin-left: 200px;   
+}
+
+#newUsersContainer {
+    clear: both;
+    margin-top: 30px;
+}
+
+#newUsersInfo {
+    float: left;
+    width: 185px;
+}
+
+#newUserLoginControls {
+    margin-left: 200px;
+}
+
+label {
+    display: inline-block;
+    width: 118px;
+}
+
+.userInput {
+    width: 165px;
+}
+
+#existingUserLoginControls div, #newUserLoginControls div {
+    margin-bottom: 10px;
+}
+
+#existingUserLogInButton, #newUserCreateAccountButton {
+    margin-left: 163px;
+}
+
+button {
+    background-color: royalblue;
+    border: none;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: Calibri;
+    width: 120px;
+    margin: 4px 2px;
+    padding: 7px 10px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: darkred;
 }
