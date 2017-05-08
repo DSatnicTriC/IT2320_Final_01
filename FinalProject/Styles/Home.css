@@ -34,6 +34,10 @@ p {
     text-align: left;
 }
 
+#existingUsersHeader, #newUsersHeader {
+    display: none;
+}
+
 #existingUsersInfo {
     float: left;
     width: 185px;
@@ -92,4 +96,69 @@ button {
 
 button:hover {
     background-color: darkred;
+}
+
+@media only screen and (max-width: 320px) {
+    /*login page*/
+
+    body {
+        width: 300px;
+        margin: 0 10px 0 10px;
+    }
+
+    p {
+        margin: 0;
+        margin-bottom: 15px;
+    }
+
+    #mainHeader {
+        text-align: center;
+    }
+
+    #paragraphBelowMainHeader {
+        text-align: center;
+    }
+
+    #existingUsersHeader, #newUsersHeader {
+        display:block;
+        font-family: Cambria, serif;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    footer {
+        text-align: center;
+    }
+
+    #existingUsersInfo {
+        display: none;
+    }
+
+    #existingUserLoginControls {
+        margin-left: 0;   
+    }
+
+    #newUsersInfo {
+        display: none;
+    }
+
+    #newUserLoginControls {
+        margin-left: 0;
+    }
+
+    label {
+        display: inline-block;
+        width: 118px;
+    }
+
+    .userInput {
+        width: 145px;
+    }
+
+    #existingUserLogInButton, #newUserCreateAccountButton {
+        margin: 15px auto 0 auto;
+        display: block;
+        width: 270px;
+    }
 }

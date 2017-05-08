@@ -5,6 +5,7 @@
 <head>
     <link href="~/Styles/Home.css" rel="stylesheet" />
     <title>Final Project</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 
 <body>
@@ -31,21 +32,39 @@
         <div class="content">
             <div id="loginPage">
                 <div id="existingUsersContainer">
+                    <p id="existingUsersHeader">Log in</p>
                     <p id="existingUsersInfo"> Already have an account with us? Returning users may log in by entering their site username and password </p>
                     <div id="existingUserLoginControls">
-                        <div id="existingUserUserNameControls"> <label for="existingUserUserName">Username</label> <input type="text" id="existingUserUserName" class="userInput" /> </div>
-                        <div id="existingUserPasswordControls"> <label for="existingUserPassword">Password</label> <input type="text" id="existingUserPassword" class="userInput" /> </div>
-                        <div id="existingUserCreateAccountControls"> <button id="existingUserLogInButton">Log In</button> </div>
+                        <div id="existingUserUserNameControls">
+                            <label for="existingUserUserName">Username</label> <input type="text" id="existingUserUserName" class="userInput" />
+                        </div>
+                        <div id="existingUserPasswordControls">
+                            <label for="existingUserPassword">Password</label> <input type="text" id="existingUserPassword" class="userInput" />
+                        </div>
+                        <div id="existingUserCreateAccountControls">
+                            <button id="existingUserLogInButton">Log In</button>
+                        </div>
                     </div>
                 </div>
                 <div id="newUsersContainer">
+                    <p id="newUsersHeader">Create New Account</p>
                     <p id="newUsersInfo"> New users, please create a new account by providing us with some basic information </p>
                     <div id="newUserLoginControls">
-                        <div id="newUserUserNameControls"> <label for="newUserUserName">Username</label> <input type="text" id="newUserUserName" class="userInput" /> </div>
-                        <div id="newUserPasswordControls"> <label for="newUserPassword">Password</label> <input type="text" id="newUserPassword" class="userInput" /> </div>
-                        <div id="newUserEmailControls"> <label for="newUserEmail">E-mail Address</label> <input type="text" id="newUserEmail" class="userInput"/> </div>
-                        <div id="newUserEmailRepeatControls"> <label for="newUserEmailRepeat">Repeat E-mail Address</label> <input type="text" id="newUserEmailRepeat" class="userInput" /> </div>
-                        <div id="newUserCreateAccountControls"> <button id="newUserCreateAccountButton">Create Account</button> </div>
+                        <div id="newUserUserNameControls">
+                            <label for="newUserUserName">Username</label> <input type="text" id="newUserUserName" class="userInput" />
+                        </div>
+                        <div id="newUserPasswordControls">
+                            <label for="newUserPassword">Password</label> <input type="text" id="newUserPassword" class="userInput" />
+                        </div>
+                        <div id="newUserEmailControls">
+                            <label for="newUserEmail">E-mail Address</label> <input type="text" id="newUserEmail" class="userInput" />
+                        </div>
+                        <div id="newUserEmailRepeatControls">
+                            <label for="newUserEmailRepeat">Repeat E-mail Address</label> <input type="text" id="newUserEmailRepeat" class="userInput" />
+                        </div>
+                        <div id="newUserCreateAccountControls">
+                            <button id="newUserCreateAccountButton">Create Account</button>
+                        </div>
                     </div>
                 </div>
             </div>
