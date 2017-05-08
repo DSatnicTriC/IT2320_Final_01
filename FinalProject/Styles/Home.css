@@ -5,6 +5,10 @@
     margin: 15px auto;
 }
 
+.specialFontCase {
+    font-size: 12px;
+}
+
 .content {
     padding: 15px 15px 0 15px;
     border: 1px black solid;
@@ -20,6 +24,10 @@ p {
     margin-bottom: 15px;
 }
 
+input {
+    font-size: 1em;
+}
+
 #mainHeader {
     font-family: Cambria, serif;
     font-size: 16px;
@@ -29,7 +37,6 @@ p {
 
 #paragraphBelowMainHeader {
     font-family: Calibri;
-    font-size: 12px;
     font-style: italic;
     text-align: left;
 }
@@ -73,6 +80,7 @@ label {
 }
 
 .userInput {
+    font-family: Calibri;
     width: 165px;
 }
 
@@ -91,7 +99,7 @@ button {
     display: inline-block;
     text-align: center;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 1em;
     font-family: Calibri;
     width: 120px;
     margin: 4px 2px;
@@ -109,13 +117,31 @@ button:hover {
 #accountNameLabel {
     font-size: 16px;
     font-weight: bold;
-    float: left;
-    width: 200px;
+    display: inline-block;
+    width: 140px;
 }
 
 #accountName {
-    margin-left: 210px;
-    font-size: 16px;
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.existingUserData {
+    margin-bottom: 10px;
+}
+
+.existingUserData Label {
+    display: inline-block;
+    width: 140px;
+}
+
+.existingUserData Input {
+    margin-left: 10px;
+}
+
+.existingUserData Button {
+    margin-left: 45px;
 }
 
 @media only screen and (max-width: 320px) {
@@ -123,6 +149,10 @@ button:hover {
     body {
         width: 300px;
         margin: 0 10px 0 10px;
+    }
+
+    .specialFontCase {
+        font-size: 13px;
     }
 
     p {
@@ -180,4 +210,36 @@ button:hover {
         display: block;
         width: 270px;
     }
+
+    /*account page specific*/
+    #accountNameLabel {
+        display: block;
+    }
+
+    #accountName {
+        display: block;
+        margin-left: 30px;
+    }
+
+    .existingUserData {
+        margin-bottom: 20px;
+    }
+
+        .existingUserData Label {
+            display: block;
+            margin: 0 auto 10px 0;
+            width: 200px;
+        }
+
+        .existingUserData Input {
+            display: block;
+            margin: 0 auto 10px 0;
+            width: 270px;
+        }
+
+        .existingUserData Button {
+            display: block;
+            margin: 0 auto 10px 0;
+            width: 270px;
+        }
 }

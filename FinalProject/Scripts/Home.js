@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-    //$(".content #loginPage").hide();
-    $(".content #accountInfoPage").hide();
+    $(".content #loginPage").hide();
+    //$(".content #accountInfoPage").hide();
 
     $("#existingUserLogInButton").click(function () {
         hideMessages();
@@ -80,7 +80,7 @@ function existingUserLogInButtonProcessor(responseData) {
     // dsatnic 2017-05-08: not sure why the ajax is not auto parsing the JSON; however, this works
     responseData = jQuery.parseJSON(responseData);
     if (responseData.Message === "Success") {
-
+        getAccountInformation("login");
     } else {
         if (responseData.Username === "Invalid") {
             $("#existingUserUserNameMessage").html("Must be an existing account username");
@@ -98,7 +98,7 @@ function newUserCreateButtonProcessor(responseData) {
     // dsatnic 2017-05-08: not sure why the ajax is not auto parsing the JSON; however, this works
     responseData = jQuery.parseJSON(responseData);
     if (responseData.Message === "Success") {
-
+        getAccountInformation("create");
     } else {
         if (responseData.Username !== "Good") {
             if (responseData.Username === "Invalid") {
@@ -141,7 +141,54 @@ function newUserCreateButtonProcessor(responseData) {
     }
 }
 
-function successAccountCreate(responseData) {
+function getAccountInformation(action) {
+    var userName; 
+    if (action === "login") {
+        userName = $("#existingUserUserName").val().trim();
+    } else {
+        userName = $("#newUserUserName").val().trim();
+    }
+    var dataObject = {
+        Username: userName,
+    };
+
+    $.ajax({
+        url: window.FinalProjectUrl_GetAccountInformation,
+        data: dataObject,
+        success: successProcessor,
+        dataType: "json"
+    });
+}
+
+function successProcessor(responseData) {
+    // dsatnic 2017-05-08: not sure why the ajax is not auto parsing the JSON; however, this works
+    responseData = jQuery.parseJSON(responseData);
+    var payload = jQuery.parseJSON(responseData.Payload);
+
+    $("#existingValuePairsContainer").empty();
+
+    $.each(payload.account, function (name, value) {
+        if (name === "username") {
+            $("#existingValuePairsContainer").append('<p id="accountNameLabel">Account Name</p>');
+            $("#existingValuePairsContainer").append('<p id="accountName">'+ value + '</p>');
+            return true;
+        }
+        if (name === "password") {
+            return true;
+        }
+        var displayName = name;
+        if (name === "emailadd") {
+            displayName = "EMailAddress";
+        }
+
+        var valueToAppend = '<div class="existingUserData"><label for="existingUser' + name + '">' + displayName + '</label>';
+        valueToAppend += '<input type="text" id="existingUser' + name + '" class="userInput" value="' + value + '" />';
+        valueToAppend += '<button id="existingUser' + name + '_Button">Update</button></div>';
+
+        $("#existingValuePairsContainer").append(valueToAppend);
+    });
+
     $(".content #loginPage").hide();
+    $("body").addClass("specialFontCase");
     $(".content #accountInfoPage").show();
 }
