@@ -1,10 +1,28 @@
-﻿var loginHtml = '<div id="existingUsersContainer"> <p id="existingUsersInfo"> Already have an account with us? Returning users may log in by entering their site username and password </p> <div id="existingUserLoginControls"> <div id="existingUserUserNameControls"> <label for="existingUserUserName">Username</label> <input type="text" id="existingUserUserName" /> </div> <div id="existingUserPasswordControls"> <label for="existingUserPassword">Password</label> <input type="text" id="existingUserPassword" /> </div> <div id="existingUserLogInButton"> <button>Log In</button> </div> </div> </div> <div id="newUsersContainer"> <p id="newUsersInfo"> New users, please create a new account by providing us with some basic information </p> <div id="newUserLoginControls"> <div id="newUserUserNameControls"> <label for="newUserUserName">Username</label> <input type="text" id="newUserUserName" /> </div> <div id="newUserPasswordControls"> <label for="newUserPassword">Password</label> <input type="text" id="newUserPassword" /> </div> <div id="newUserEmailControls"> <label for="newUserEmail">E-mail Address</label> <input type="text" id="newUserEmail" /> </div> <div id="newUserEmailRepeatControls"> <label for="newUserEmailRepeat">Repeat E-mail Address</label> <input type="text" id="newUserEmailRepeat" /> </div> <div id="newUserCreateAccountControls"> <button id="newUserCreateAccountButton">CreateAccount</button> </div> </div> </div>';
-var accountInfoHtml = '<div> Made it to account info ... now I just need to add something here </div>';
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
+    //$(".content #loginPage").hide();
     $(".content #accountInfoPage").hide();
 
+    $("#existingUserLogInButton").click(function () {
+        hideMessages();
+
+        if (validateLoginInputs()) {
+            var dataObject = {
+                Username: $("#existingUserUserName").val(),
+                Password: $("#existingUserPassword").val(),
+            };
+
+            $.ajax({
+                url: window.FinalProjectUrl_Login,
+                data: dataObject,
+                success: existingUserLogInButtonProcessor,
+                dataType: "json"
+            });
+        }
+    });
+
     $("#newUserCreateAccountButton").click(function () {
+        hideMessages();
+
         var dataObject = {
             Username: $("#newUserUserName").val(),
             Password: $("#newUserPassword").val(),
@@ -21,7 +39,41 @@ $(document).ready(function () {
     });
 });
 
+function hideMessages() {
+    $("#existingUserUserNameMessage").hide();
+    $("#existingUserPasswordMessage").hide();
+}
 
+function validateLoginInputs() {
+    if ($("#existingUserUserName").val().trim() === "") {
+        $("#existingUserUserNameMessage").html("Please enter a user name");
+        $("#existingUserUserNameMessage").show();
+        return false;
+    }
+    if ($("#existingUserPassword").val().trim() === "") {
+        $("#existingUserPasswordMessage").html("Please enter a password");
+        $("#existingUserPasswordMessage").show();
+        return false;
+    }
+    return true;
+}
+
+function existingUserLogInButtonProcessor(responseData) {
+    responseData = jQuery.parseJSON(responseData);
+    if (responseData.Message === "Success") {
+
+    } else {
+        if (responseData.Username === "Invalid") {
+            $("#existingUserUserNameMessage").html("The username you entered is invalid");
+            $("#existingUserUserNameMessage").show();
+        }
+        else if (responseData.Password === "Wrong") {
+            $("#existingUserPasswordMessage").html("The password you entered is wrong");
+            $("#existingUserPasswordMessage").show();
+        }
+    }
+
+}
 
 function successAccountCreate(responseData) {
     $(".content #loginPage").hide();

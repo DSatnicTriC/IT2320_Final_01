@@ -38,8 +38,12 @@
                         <div id="existingUserUserNameControls">
                             <label for="existingUserUserName">Username</label> <input type="text" id="existingUserUserName" class="userInput" />
                         </div>
+                        <div class="errorMessageDisplay" id="existingUserUserNameMessage">
+                        </div>
                         <div id="existingUserPasswordControls">
                             <label for="existingUserPassword">Password</label> <input type="text" id="existingUserPassword" class="userInput" />
+                        </div>
+                        <div class="errorMessageDisplay" id="existingUserPasswordMessage">
                         </div>
                         <div id="existingUserCreateAccountControls">
                             <button id="existingUserLogInButton">Log In</button>
@@ -69,18 +73,25 @@
                 </div>
             </div>
             <div id="accountInfoPage">
-                Made it to account info ... now I just need to add something here
+                <div id="existingValuePairsContainer">
+                    <p id="accountNameLabel">Account Name</p>
+                    <p id="accountName">Daniel Satnic</p>
+                </div>
+            </div>
+            <div id="newValuePairsContainer">
             </div>
         </div>
-
         <footer>
             Cuyahoga Community College<br />
             700 Carnegie Avenue, Cleveland, Ohio 44115
         </footer>
-    </div>
 
+    </div>
     <script>
-            window.FinalProjectUrl_CreateAccount = '@Url.Action("CreateAccount", "Home")';
+        window.FinalProjectUrl_AddOrUpdateElement = '@Url.Action("AddOrUpdateElement", "Home")';
+        window.FinalProjectUrl_CreateAccount = '@Url.Action("CreateAccount", "Home")';
+        window.FinalProjectUrl_GetAccountInformation = '@Url.Action("GetAccountInformation", "Home")';
+        window.FinalProjectUrl_Login = '@Url.Action("Login", "Home")';
     </script>
 </body>
 </html>

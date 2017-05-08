@@ -34,6 +34,12 @@ p {
     text-align: left;
 }
 
+.errorMessageDisplay {
+    margin-left: 45px;
+    color: red;
+    display: none;
+}
+
 #existingUsersHeader, #newUsersHeader {
     display: none;
 }
@@ -98,9 +104,22 @@ button:hover {
     background-color: darkred;
 }
 
+
+/*account page specific*/
+#accountNameLabel {
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+    width: 200px;
+}
+
+#accountName {
+    margin-left: 210px;
+    font-size: 16px;
+}
+
 @media only screen and (max-width: 320px) {
     /*login page*/
-
     body {
         width: 300px;
         margin: 0 10px 0 10px;
