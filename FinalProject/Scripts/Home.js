@@ -2,7 +2,7 @@
 var accountInfoHtml = '<div> Made it to account info ... now I just need to add something here </div>';
 
 $(document).ready(function () {
-    $(".content").html(loginHtml);
+    $(".content #accountInfoPage").hide();
 
     $("#newUserCreateAccountButton").click(function () {
         var dataObject = {
@@ -24,5 +24,6 @@ $(document).ready(function () {
 
 
 function successAccountCreate(responseData) {
-    $(".content").html(accountInfoHtml);
+    $(".content #loginPage").hide();
+    $(".content #accountInfoPage").show();
 }

@@ -1,3 +1,36 @@
-﻿.content {
+﻿body {
+    font-family: Calibri;
+    font-size: 12px;
+    width: 520px;
+    margin: 15px auto;
+}
+
+#fullPage {
+    padding: 10px 15px;
+    border: 1px black solid;
+    border-radius: 5px;
+}
+
+p {
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+#mainHeader {
+    font-family: Cambria, serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+}
+
+#paragraphBelowMainHeader {
+    font-family: Calibri;
+    font-size: 12px;
+    font-style: italic;
+    text-align: left;
+}
+
+
+.content {
    margin-bottom: 15px;
 }
