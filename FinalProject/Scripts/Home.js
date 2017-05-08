@@ -7,8 +7,8 @@
 
         if (validateLoginInputs()) {
             var dataObject = {
-                Username: $("#existingUserUserName").val(),
-                Password: $("#existingUserPassword").val(),
+                Username: $("#existingUserUserName").val().trim(),
+                Password: $("#existingUserPassword").val().trim(),
             };
 
             $.ajax({
@@ -23,25 +23,32 @@
     $("#newUserCreateAccountButton").click(function () {
         hideMessages();
 
-        var dataObject = {
-            Username: $("#newUserUserName").val(),
-            Password: $("#newUserPassword").val(),
-            EmailAdd: $("#newUserEmail").val(),
-            EmailCon: $("#newUserEmailRepeat").val(),
-        };
+        if (validateCreationInputs()) {
+            var dataObject = {
+                Username: $("#newUserUserName").val().trim(),
+                Password: $("#newUserPassword").val().trim(),
+                EmailAdd: $("#newUserEmail").val().trim(),
+                EmailCon: $("#newUserEmailRepeat").val().trim(),
+            };
 
-        $.ajax({
-            url: window.FinalProjectUrl_CreateAccount,
-            data: dataObject,
-            success: successAccountCreate,
-            dataType: "json"
-        });
+            $.ajax({
+                url: window.FinalProjectUrl_CreateAccount,
+                data: dataObject,
+                success: successAccountCreate,
+                dataType: "json"
+            });
+        }
     });
 });
 
 function hideMessages() {
     $("#existingUserUserNameMessage").hide();
     $("#existingUserPasswordMessage").hide();
+
+    $("#newUserUserNameMessage").hide();
+    $("#newUserPasswordMessage").hide();
+    $("#newUserEmailMessage").hide();
+    $("#newUserEmailRepeatMessage").hide();
 }
 
 function validateLoginInputs() {
@@ -58,7 +65,32 @@ function validateLoginInputs() {
     return true;
 }
 
+function validateCreationInputs() {
+    if ($("#newUserUserName").val().trim() === "") {
+        $("#newUserUserNameMessage").html("Please enter a user name");
+        $("#newUserUserNameMessage").show();
+        return false;
+    }
+    if ($("#newUserPassword").val().trim() === "") {
+        $("#newUserPasswordMessage").html("Please enter a password");
+        $("#newUserPasswordMessage").show();
+        return false;
+    }
+    if ($("#newUserEmail").val().trim() === "") {
+        $("#newUserEmailMessage").html("Please enter an email address");
+        $("#newUserEmailMessage").show();
+        return false;
+    }
+    if ($("#newUserEmailRepeat").val().trim() === "") {
+        $("#newUserEmailRepeatMessage").html("Please re-enter the email address");
+        $("#newUserEmailRepeatMessage").show();
+        return false;
+    }
+    return true;
+}
+
 function existingUserLogInButtonProcessor(responseData) {
+    // dsatnic 2017-05-08: not sure why the ajax is not auto parsing the JSON; however, this works
     responseData = jQuery.parseJSON(responseData);
     if (responseData.Message === "Success") {
 
