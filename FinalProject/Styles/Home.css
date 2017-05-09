@@ -144,6 +144,24 @@ button:hover {
     margin-left: 45px;
 }
 
+.existingUserNewData {
+    margin-bottom: 15px;
+}
+
+#newValuePairsContainer {
+    margin-top: 40px;
+}
+
+#newValuePairsContainer Label {
+    display: inline-block;
+    margin-bottom: 15px;
+    width: 147px;
+}
+
+#existingUserNewData_AddButton {
+    margin-left: 150px;
+}
+
 @media only screen and (max-width: 320px) {
     /*login page*/
     body {
@@ -238,6 +256,36 @@ button:hover {
         }
 
         .existingUserData Button {
+            display: block;
+            margin: 0 auto 10px 0;
+            width: 270px;
+        }
+
+    #newValuePairsContainer {
+        margin-bottom: 20px;
+    }
+
+    #existingUserNewData_AddButton {
+        margin-left: 0;
+    }
+
+    #newValuePairsContainer Label {
+        margin-bottom: 10px;
+    }
+
+        .existingUserNewData Label {
+            display: block;
+            margin: 0 auto 10px 0;
+            width: 200px;
+        }
+
+        .existingUserNewData Input {
+            display: block;
+            margin: 0 auto 10px 0;
+            width: 270px;
+        }
+
+        .existingUserNewData Button {
             display: block;
             margin: 0 auto 10px 0;
             width: 270px;

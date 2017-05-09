@@ -183,7 +183,7 @@ function successProcessor(responseData) {
 
         var valueToAppend = '<div class="existingUserData"><label for="existingUser' + name + '">' + displayName + '</label>';
         valueToAppend += '<input type="text" id="existingUser' + name + '" class="userInput" value="' + value + '" />';
-        valueToAppend += '<input type="hidden" id="existingUser' + name + '" value="' + name + '" />';
+        valueToAppend += '<input type="hidden" value="' + name + '" />';
         valueToAppend += '<button id="existingUser' + name + '_Button">Update</button></div>';
 
         $("#existingValuePairsContainer").append(valueToAppend);
