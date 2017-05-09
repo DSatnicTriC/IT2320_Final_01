@@ -182,7 +182,7 @@ function existingUserNewDataButtonProcessor(responseData) {
     // dsatnic 2017-05-08: not sure why the ajax is not auto parsing the JSON; however, this works
     responseData = jQuery.parseJSON(responseData);
     if (responseData.Message === "Success") {
-        successProcessor(originalResponseData);
+        successProcessor(originalResponseData, "stayPut");
     } else {
         if (responseData.Error.trim() === "Cannot Have Spaces In Element Name") {
             $("#elementNameMessage").html("Cannot Have Spaces In Element Name");
@@ -193,6 +193,14 @@ function existingUserNewDataButtonProcessor(responseData) {
             $("#elementNameMessage").show();
         }
     }
+}
+
+function successProcessorAnimate(data) {
+    successProcessor(data, "animate");
+}
+
+function successProcessorDoNotAnimate(data) {
+    successProcessor(data, "stayPut");
 }
 
 function getAccountInformation(action) {
@@ -209,12 +217,12 @@ function getAccountInformation(action) {
     $.ajax({
         url: window.FinalProjectUrl_GetAccountInformation,
         data: dataObject,
-        success: successProcessor,
+        success: successProcessorAnimate,
         dataType: "json"
     });
 }
 
-function successProcessor(responseData) {
+function successProcessor(responseData, action) {
     // dsatnic 2017-05-08: not sure why the ajax is not auto parsing the JSON; however, this works
     responseData = jQuery.parseJSON(responseData);
     var payload = jQuery.parseJSON(responseData.Payload);
@@ -242,10 +250,15 @@ function successProcessor(responseData) {
 
         $("#existingValuePairsContainer").append(valueToAppend);
     });
-
-    $(".content #loginPage").hide();
-    $("body").addClass("specialFontCase");
-    $(".content #accountInfoPage").show();
+    
+    if (action === "animate") {
+        $("body").addClass("specialFontCase");
+        $(".content").first().css({ "position": "relative" }).animate({ "left": "-=2000px" }, 100);
+        $(".content #loginPage").hide();
+        $(".content #accountInfoPage").show();
+        $(".content").first().css({ "position": "relative" }).animate({ "left": "+=4000px" }, 0);
+        $(".content").first().css({ "position": "relative" }).animate({ "left": "-=2000px" }, 100);
+    }
 
     $("#existingValuePairsContainer button").click(function (e) {
         hideMessages();
@@ -259,7 +272,7 @@ function successProcessor(responseData) {
         $.ajax({
             url: window.FinalProjectUrl_AddOrUpdateElement,
             data: dataObject,
-            success: successProcessor,
+            success: successProcessorDoNotAnimate,
             dataType: "json"
         });
     });
