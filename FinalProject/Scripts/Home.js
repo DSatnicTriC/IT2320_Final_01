@@ -182,6 +182,8 @@ function existingUserNewDataButtonProcessor(responseData) {
     // dsatnic 2017-05-08: not sure why the ajax is not auto parsing the JSON; however, this works
     responseData = jQuery.parseJSON(responseData);
     if (responseData.Message === "Success") {
+        $("#elementName").val("");
+        $("#elementValue").val("");
         successProcessor(originalResponseData, "stayPut");
     } else {
         if (responseData.Error.trim() === "Cannot Have Spaces In Element Name") {
