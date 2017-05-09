@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    //$(".content #loginPage").hide();
     $(".content #accountInfoPage").hide();
 
     $("#existingUserLogInButton").click(function () {
@@ -279,4 +278,3 @@ function successProcessor(responseData, action) {
         });
     });
 }
-

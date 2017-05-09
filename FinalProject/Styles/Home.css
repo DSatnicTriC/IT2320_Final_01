@@ -167,7 +167,6 @@ button:hover {
 }
 
 @media only screen and (max-width: 320px) {
-    /*login page*/
     body {
         width: 300px;
         margin: 0 10px 0 10px;
