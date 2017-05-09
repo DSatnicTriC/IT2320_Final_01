@@ -177,6 +177,10 @@ button:hover {
         font-size: 13px;
     }
 
+        .specialFontCase #mainHeader {
+            font-size: 18px;
+        }
+
     p {
         margin: 0;
         margin-bottom: 15px;
