@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-    $(".content #loginPage").hide();
-    //$(".content #accountInfoPage").hide();
+    //$(".content #loginPage").hide();
+    $(".content #accountInfoPage").hide();
 
     $("#existingUserLogInButton").click(function () {
         hideMessages();
@@ -183,6 +183,7 @@ function successProcessor(responseData) {
 
         var valueToAppend = '<div class="existingUserData"><label for="existingUser' + name + '">' + displayName + '</label>';
         valueToAppend += '<input type="text" id="existingUser' + name + '" class="userInput" value="' + value + '" />';
+        valueToAppend += '<input type="hidden" id="existingUser' + name + '" value="' + name + '" />';
         valueToAppend += '<button id="existingUser' + name + '_Button">Update</button></div>';
 
         $("#existingValuePairsContainer").append(valueToAppend);
@@ -191,4 +192,22 @@ function successProcessor(responseData) {
     $(".content #loginPage").hide();
     $("body").addClass("specialFontCase");
     $(".content #accountInfoPage").show();
+
+    $("#existingValuePairsContainer button").click(function (e) {
+        hideMessages();
+
+        var dataObject = {
+            Username: $("#accountName").text().trim(),
+            ElementName: e.currentTarget.previousSibling.value,
+            ElementValue: e.currentTarget.previousSibling.previousSibling.value.trim()
+        };
+
+        $.ajax({
+            url: window.FinalProjectUrl_AddOrUpdateElement,
+            data: dataObject,
+            success: successProcessor,
+            dataType: "json"
+        });
+    });
 }
+
