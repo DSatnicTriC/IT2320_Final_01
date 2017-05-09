@@ -39,6 +39,25 @@
             });
         }
     });
+
+    $("#existingUserNewData_AddButton").click(function () {
+        hideMessages();
+
+        if (validateNewValuePairsInputs()) {
+            var dataObject = {
+                Username: $("#accountName").text().trim(),
+                ElementName: $("#elementName").val().trim(),
+                ElementValue: $("#elementValue").val().trim()
+            };
+
+            $.ajax({
+                url: window.FinalProjectUrl_AddOrUpdateElement,
+                data: dataObject,
+                success: existingUserNewDataButtonProcessor,
+                dataType: "json"
+            });
+        }
+    });
 });
 
 function hideMessages() {
@@ -49,6 +68,9 @@ function hideMessages() {
     $("#newUserPasswordMessage").hide();
     $("#newUserEmailMessage").hide();
     $("#newUserEmailRepeatMessage").hide();
+
+    $("#elementNameMessage").hide();
+    $("#elementValueMessage").hide();
 }
 
 function validateLoginInputs() {
@@ -76,6 +98,21 @@ function validateCreationInputs() {
     return true;
 }
 
+function validateNewValuePairsInputs() {
+    //dsatnic 2017-05-08: I need to handle here because the server does not check for nulls in the request
+    if ($("#elementName").val().trim() === "") {
+        $("#elementNameMessage").html("Please enter an element name");
+        $("#elementNameMessage").show();
+        return false;
+    }
+    if ($("#elementValue").val().trim() === "") {
+        $("#elementValueMessage").html("Please enter an element value");
+        $("#elementValueMessage").show();
+        return false;
+    }
+    return true;
+}
+
 function existingUserLogInButtonProcessor(responseData) {
     // dsatnic 2017-05-08: not sure why the ajax is not auto parsing the JSON; however, this works
     responseData = jQuery.parseJSON(responseData);
@@ -91,7 +128,6 @@ function existingUserLogInButtonProcessor(responseData) {
             $("#existingUserPasswordMessage").show();
         }
     }
-
 }
 
 function newUserCreateButtonProcessor(responseData) {
@@ -137,6 +173,24 @@ function newUserCreateButtonProcessor(responseData) {
                 $("#newUserEmailRepeatMessage").html(responseData.EmailCon);
             }
             $("#newUserEmailRepeatMessage").show();
+        }
+    }
+}
+
+function existingUserNewDataButtonProcessor(responseData) {
+    var originalResponseData = responseData;
+    // dsatnic 2017-05-08: not sure why the ajax is not auto parsing the JSON; however, this works
+    responseData = jQuery.parseJSON(responseData);
+    if (responseData.Message === "Success") {
+        successProcessor(originalResponseData);
+    } else {
+        if (responseData.Error.trim() === "Cannot Have Spaces In Element Name") {
+            $("#elementNameMessage").html("Cannot Have Spaces In Element Name");
+            $("#elementNameMessage").show();
+        }
+        else if (responseData.Error.trim() === "Cannot Change Username") {
+            $("#elementNameMessage").html("Cannot Change Username");
+            $("#elementNameMessage").show();
         }
     }
 }

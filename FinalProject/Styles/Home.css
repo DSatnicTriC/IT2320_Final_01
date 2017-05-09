@@ -162,7 +162,11 @@ button:hover {
     margin-left: 150px;
 }
 
-@media only screen and (max-width: 320px) {
+.existingUserNewData .errorMessageDisplay {
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 340px) {
     /*login page*/
     body {
         width: 300px;
